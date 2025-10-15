@@ -1,0 +1,205 @@
+/* style.css — Responsive styles for A4 Photo Collage Generator */
+
+/* Reset ringan */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+/* Root variables warna & ukuran */
+:root{
+  --page-bg: #fafafa;
+  --card-bg: #ffffff;
+  --muted: #666;
+  --accent: #2563eb;
+  --border: #e5e7eb;
+  --radius: 8px;
+  --max-width: 1100px;
+  --gutter: 16px;
+  --text: #111827;
+}
+
+/* Body & layout */
+body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: var(--page-bg);
+  color: var(--text);
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Main container */
+.container{
+  width: 100%;
+  max-width: var(--max-width);
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(15,23,42,0.06);
+  padding: 22px;
+  border: 1px solid var(--border);
+}
+
+/* Header */
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom: 14px;
+}
+.header h1{
+  font-size: 20px;
+  font-weight:600;
+  color:var(--text);
+}
+.header .desc{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* Controls area: responsive grid */
+.controls{
+  display: grid;
+  grid-template-columns: 1fr 260px;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+/* Left side controls (select, file input) */
+.controls-left{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:center;
+}
+.select, .file-input {
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+select{
+  padding:8px 10px;
+  border:1px solid var(--border);
+  border-radius:8px;
+  background:white;
+  font-size:14px;
+}
+
+/* File input styling - custom wrapper */
+.file-wrapper{
+  position:relative;
+  display:inline-block;
+}
+.file-wrapper input[type="file"]{
+  display:inline-block;
+}
+
+/* Action buttons */
+.actions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+}
+button{
+  background:var(--accent);
+  color:white;
+  border:none;
+  padding:9px 14px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:600;
+  font-size:14px;
+  box-shadow: 0 2px 6px rgba(37,99,235,0.12);
+}
+button.secondary{
+  background:transparent;
+  color:var(--accent);
+  border:1px solid var(--border);
+  box-shadow:none;
+}
+
+/* Thumbnails grid */
+.thumbs-wrap{
+  margin-top: 8px;
+  border-top:1px dashed var(--border);
+  padding-top: 12px;
+}
+.grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.grid .thumb{
+  width:80px;
+  height:80px;
+  border-radius:6px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background:#f8fafc;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.grid .thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Preview area */
+.preview-card{
+  margin-top: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.98));
+}
+.preview-card .note{
+  color:var(--muted);
+  font-size:13px;
+  margin-bottom:8px;
+}
+.preview-card img{
+  width: 100%;
+  height: auto;
+  display:block;
+  border-radius:6px;
+  border:1px solid #eee;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.03);
+}
+
+/* Footer / small helpers */
+.small {
+  font-size:13px;
+  color:var(--muted);
+}
+
+/* Responsive rules for mobile */
+@media (max-width: 880px){
+  .controls{
+    grid-template-columns: 1fr;
+  }
+  .actions{
+    justify-content:flex-start;
+    width:100%;
+    flex-wrap:wrap;
+  }
+  .header{ flex-direction: column; align-items:flex-start; gap:8px; }
+  .grid .thumb{ width:64px; height:64px; }
+  .container{ padding: 16px; border-radius:10px; }
+  button{ padding:8px 12px; font-size:13px; }
+}
+
+/* Very small screens */
+@media (max-width: 420px){
+  .grid .thumb{ width:54px; height:54px; }
+  select{ font-size:13px; padding:7px 8px; }
+}
+
+/* Accessibility focus */
+button:focus, select:focus, input:focus {
+  outline: 3px solid rgba(37,99,235,0.18);
+  outline-offset: 2px;
+  border-color: var(--accent);
+}
